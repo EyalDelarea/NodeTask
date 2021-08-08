@@ -2,14 +2,31 @@ const express = require("express");
 const fetch = require("node-fetch");
 require("dotenv").config();
 const data = require("./Data/data");
-const PORT = 5001;
+const PORT = 5000;
 const app = express();
 
-const answers = [];
-let moviesList = [];
 const map = new Map();
+const allActorsQuery = [];
+let moviesList = [];
 
 app.get("/actors", async (req, res, next) => {
+    res.send(allActorsQuery);
+});
+
+app.get("/actors/:name", async (req, res, next) => {
+    const filterdArray = allActorsQuery.filter((item) =>
+        item.actorsName.toLowerCase().includes(req.params.name.toLowerCase())
+    );
+    res.send(filterdArray);
+});
+
+app.listen(PORT, () => {
+    console.log("Server is runing on port ", PORT);
+    initHashMap();
+    populateArray();
+});
+
+const populateArray = () => {
     data.people.forEach((person, index) => {
         const query = person.actorsName.replaceAll(" ", "+");
         fetch(
@@ -35,26 +52,21 @@ app.get("/actors", async (req, res, next) => {
                 }
             })
             .then(() => {
-                answers.push({
+                allActorsQuery.push({
                     actorsName: person.actorsName,
                     movies: moviesList,
                 });
             })
             .then(() => {
                 if (index === data.people.length - 1) {
-                    res.send(answers);
+                    // res.send(allActorsQuery);
+                    return allActorsQuery;
                 }
             });
     });
-});
-
-app.listen(PORT, async () => {
-    console.log("Server is runing on port ", PORT);
-    initHashMap();
-});
-
-function initHashMap() {
+};
+const initHashMap = () => {
     data.movies.forEach((item) => {
         map.set(item.movieID, item.movieName);
     });
-}
+};
