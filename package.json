@@ -1,0 +1,32 @@
+{
+  "name": "nodetask",
+  "version": "1.0.0",
+  "description": "node task exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "dockerStart": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EyalDelarea/NodeJS-Exercise.git"
+  },
+  "keywords": [
+    "nodeJS"
+  ],
+  "author": "Eyal Delarea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EyalDelarea/NodeJS-Exercise/issues"
+  },
+  "homepage": "https://github.com/EyalDelarea/NodeJS-Exercise#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "fetch": "^1.1.0",
+    "node": "^16.6.1",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.12"
+  }
+}
