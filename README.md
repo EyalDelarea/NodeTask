@@ -2,7 +2,10 @@
 Backend Exercise querying API with NodeJS-Express.
 
 
-Endpoints:
-/actors : query every actor in the Dataset which Marvel movie is he acting at.
-/actors/:name - query only specific actor to see which Marvel movies does he act in.
+End-points:
 
+/actors : Which Marvel movies did each actor play in.
+
+/actors/:name - Query only specific actor to see which Marvel movies did he act on.
+
+/moreThanOne - Actors who played more than one Marvel character
