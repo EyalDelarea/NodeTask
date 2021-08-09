@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 
-module.exports = populateArray = (peopleArray, allActorsQuery, hashMap) => {
+const fetchActorsData = (peopleArray, allActorsQuery, hashMap) => {
   let moviesList = [];
   peopleArray.forEach((person, index) => {
     const query = person.actorsName.replaceAll(" ", "+");
@@ -22,9 +22,7 @@ module.exports = populateArray = (peopleArray, allActorsQuery, hashMap) => {
               moviesList.push(element.title);
             }
           });
-        } catch (e) {
-          console.log(e);
-        }
+        } catch (e) {}
       })
       .then(() => {
         allActorsQuery.push({
@@ -34,14 +32,13 @@ module.exports = populateArray = (peopleArray, allActorsQuery, hashMap) => {
       })
       .then(() => {
         if (index === peopleArray.length - 1) {
-          // res.send(allActorsQuery);
           return allActorsQuery;
         }
       });
   });
 };
 
-module.exports = array = (moviesArray, peopleMap, actorsRolesMap) => {
+const fetchMoviesData = (moviesArray, peopleMap, actorsRolesMap) => {
   moviesArray.forEach((movie, index) => {
     fetch(
       "https://api.themoviedb.org/3/movie/" +
@@ -78,9 +75,7 @@ module.exports = array = (moviesArray, peopleMap, actorsRolesMap) => {
               }
             }
           });
-        } catch (e) {
-          
-        }
+        } catch (e) {}
       })
       .then(() => {
         if (index === moviesArray.length - 1) {
@@ -88,4 +83,9 @@ module.exports = array = (moviesArray, peopleMap, actorsRolesMap) => {
         }
       });
   });
+};
+
+module.exports = {
+  fetchMoviesData: fetchMoviesData,
+  fetchActorsData: fetchActorsData,
 };
