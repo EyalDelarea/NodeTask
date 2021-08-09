@@ -15,7 +15,7 @@ app.get("/actors", async (req, res, next) => {
     res.send(allActorsQuery);
 });
 
-app.get("/moreThanOne", async (req, res, next) => {
+app.get("/morethanone", async (req, res, next) => {
     const moreThanOneMovie = [];
     actorsRolesMap.forEach((item, key) => {
         if (!!item[1]) {
@@ -36,7 +36,7 @@ app.listen(PORT, () => {
     console.log("Server is runing on port ", PORT);
     initHashMap();
     populateArray(data.people, allActorsQuery, map);
-    array(data.movies,peopleMap);
+    array(data.movies,peopleMap,actorsRolesMap);
 });
 
 const initHashMap = () => {
