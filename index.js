@@ -13,25 +13,35 @@ const actorsRolesMap = new Map();
 
 app.listen(PORT, () => {
   initHashMap();
+  //Make network requests to the API
   try {
     networkTasks.fetchActorsData(data.people, allActorsQuery, map);
     networkTasks.fetchMoviesData(data.movies, peopleMap, actorsRolesMap);
   } catch (e) {
-    console.log(e);
+    console.log(console.log("There was an error during API calls " + e));
   }
   console.log("Server is runing on port ", PORT);
 });
 
+/**
+ * Default path - show README file with instructions how to use the site
+ */
 app.get("/", function (req, res) {
   var path = __dirname + "/README.md";
   var file = fs.readFileSync(path, "utf8");
 
   res.send(file.toString());
 });
+
+
 app.get("/actors", (req, res) => {
   res.send(allActorsQuery);
 });
 
+/**
+ * Returing listing which have more than one item from the actorsRoleMap
+ * meaning they are acting in more than one movie
+ */
 app.get("/morethanone", (req, res) => {
   const moreThanOneMovie = [];
   actorsRolesMap.forEach((item, key) => {
@@ -48,6 +58,12 @@ app.get("/actors/:name", (req, res) => {
   );
   res.send(filterdArray);
 });
+
+/**
+ * Searching for same actors who played the same role
+ * building a hashmap with role -> actor key value pairs
+ * if we have value with more than one actor,push it to ansArray.
+ */
 
 app.get("/actingcollision", (req, res) => {
   const rolesMap = new Map();
@@ -68,6 +84,9 @@ app.get("/actingcollision", (req, res) => {
   res.send(ansArray);
 });
 
+/**
+ * Initializing hashMaps for later use by the tasks
+ */
 const initHashMap = () => {
   data.movies.forEach((item) => {
     map.set(item.movieID, item.movieName);

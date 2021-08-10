@@ -22,7 +22,12 @@ const fetchActorsData = (peopleArray, allActorsQuery, hashMap) => {
               moviesList.push(element.title);
             }
           });
-        } catch (e) {}
+        } catch (e) {
+          console.log(
+            "There was an error accessing fields in the response object",
+            error
+          );
+        }
       })
       .then(() => {
         allActorsQuery.push({
@@ -75,7 +80,12 @@ const fetchMoviesData = (moviesArray, peopleMap, actorsRolesMap) => {
               }
             }
           });
-        } catch (e) {}
+        } catch (e) {
+          console.log(
+            "There was an error accessing fields in the response object",
+            error
+          );
+        }
       })
       .then(() => {
         if (index === moviesArray.length - 1) {
