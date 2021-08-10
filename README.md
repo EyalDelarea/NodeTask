@@ -1,6 +1,10 @@
 # BackendExercise
 Backend Exercise querying API with NodeJS-Express.
 
+Deployed via Docker container on a local machine with static IP :
+
+http://185.23.175.119:8080/
+
 
 
 ![7qjjeinaev4703fiurwh](https://user-images.githubusercontent.com/23456142/128731562-7eea04a2-7a17-4566-bd31-1c3b0bf9bccd.jpeg)
