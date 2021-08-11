@@ -15,13 +15,16 @@ http://185.23.175.119:8080/
 End-points:
 
 /actors : Which Marvel movies did each actor play in.
+http://185.23.175.119:8080/actors
 
 /actors/:name - Query only specific actor to see which Marvel movies did he act on.
+http://185.23.175.119:8080/actors:name
 
 /moreThanOne - Actors who played more than one Marvel character
+http://185.23.175.119:8080/morethanone
 
 /actingcollision Are there 2 different actors who played the same role
-
+http://185.23.175.119:8080/actingcollision
 
 
 
